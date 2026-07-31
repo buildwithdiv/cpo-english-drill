@@ -15,16 +15,7 @@ A free, single-file practice trainer for the **SSC CPO Tier-2 (Paper-2) English*
 - **Vocab Chowki** — a genuinely new word each time, fetched live from the internet (Free Dictionary API + Datamuse), filterable by Easy/Medium/Hard/Mixed difficulty, with meaning, synonym, antonym, and a usage example. Falls back to a built-in offline word bank automatically if there's no internet.
 - **Vocab Test** — a separate Testbook-style quiz mode that tests previously learned words (never the word currently on screen), cycling through different words each round with the meaning hidden until answered.
 - **Scorecard** — a progress report showing accuracy and capability level per section, plus a "Focus Areas" callout highlighting exactly which topics need the most work.
-- **Progress tracking** — everything above is saved locally in the browser (no sign-up, no server).
-
-## How to use
-
-Just open `index.html` in any browser. No installation, no build step. Works fully offline for all the practice drills; the live Vocab Chowki feature needs an internet connection (it calls two free, key-less public APIs) and automatically falls back to its offline word bank if there's no connection.
-
-To host it for free (e.g. on GitHub Pages):
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages**, set the source branch to `main` and folder to `/root`.
-3. Your trainer will be live at `https://<username>.github.io/<repo-name>/`.
+- **Progress tracking** — everything above is saved locally in the browser (no sign-up, no server)
 
 ## Tech
 
