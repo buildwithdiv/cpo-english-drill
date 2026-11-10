@@ -2,7 +2,7 @@
 <!--
   CPO English Drill — SSC CPO Mains (Paper-2) English practice trainer
   Built by Div
-  Single-file, no build step, no dependencies. Works fully offline: every question,
+  Single-file, no build step, no dependencies. Every question,
   explanation and vocabulary word is built in, and progress is stored in the browser.
 -->
 <html lang="en">
@@ -11,7 +11,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CPO English Drill — by Div</title>
-    <meta name="description" content="SSC CPO Mains English practice trainer — adaptive topic drills, a full mixed mock, an offline vocabulary builder, and a weak-area scorecard. Works fully offline. Made by Div." />
+    <meta name="description" content="SSC CPO Mains English practice trainer — adaptive topic drills, a full mixed mock, a level-wise vocabulary builder, and a weak-area scorecard. Made by Div." />
     <meta name="theme-color" content="#0B1220" />
     <link rel="manifest" href="manifest.webmanifest" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
@@ -4230,7 +4230,7 @@
         }
 
         /* =========================================================================
-           PROCEDURAL GENERATORS — combinatorial engines, fully offline.
+           PROCEDURAL GENERATORS — combinatorial engines.
            Voice, Synonym/Antonym, One-Word and Idioms don't rely only on a fixed list
            of pre-written questions: each also assembles fresh questions on demand
            from a bank of building blocks, with freshly randomised wrong options, so
@@ -5544,7 +5544,7 @@
         }
 
         /* =========================================================================
-           VOCABULARY — built-in word bank (fully offline)
+           VOCABULARY — built-in word bank
            Each row: [word, level, meaning, synonyms, antonyms, example sentence]
            ========================================================================= */
         const VOCAB = [
@@ -8783,7 +8783,7 @@
         }
 
         /* =========================================================================
-           ACTIONS — vocabulary builder (offline word bank)
+           ACTIONS — vocabulary builder (built-in word bank)
            ========================================================================= */
         function vocabPool() {
             /* "Mixed" is the challenge pool: Hard and Expert words only */
@@ -9023,7 +9023,7 @@
                 '<div>' +
                 '<span class="badge">Dashboard</span>' +
                 '<h1 class="display">Practise smarter. Score higher in SSC CPO English.</h1>' +
-                '<p>Practice built on the actual SSC CPO Mains (Paper-2) English pattern — adaptive difficulty, timed tests with negative marking, an offline vocabulary builder, and a scorecard that shows exactly where you need more work. Works fully offline.</p>' +
+                '<p>Practice built on the actual SSC CPO Mains (Paper-2) English pattern — adaptive difficulty, timed tests with negative marking, a level-wise vocabulary builder, and a scorecard that shows exactly where you need more work.</p>' +
                 '</div>' +
                 '<div class="hero-stats">' +
                 '<div class="l1">MAINS FORMAT</div>' +
@@ -9698,10 +9698,21 @@
         });
         if (/iphone|ipad|ipod/i.test(navigator.userAgent) && !isStandalone()) showInstallButton(true);
 
+        /* The offline cache has been removed. If an older version of the app registered a service worker
+           or filled a cache on this device, clean it up so the latest version always loads from the network. */
         if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
-            window.addEventListener("load", function() {
-                navigator.serviceWorker.register("sw.js").catch(function() { /* offline cache is optional */ });
-            });
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+                regs.forEach(function(r) {
+                    r.unregister();
+                });
+            }).catch(function() { /* ignore */ });
+            if (window.caches) {
+                caches.keys().then(function(keys) {
+                    keys.forEach(function(k) {
+                        if (k.indexOf("cpo-english-drill-") === 0) caches.delete(k);
+                    });
+                }).catch(function() { /* ignore */ });
+            }
         }
     </script>
 </body>

@@ -1,7 +1,7 @@
 {
   "name": "CPO English Drill",
   "short_name": "CPO Drill",
-  "description": "SSC CPO Mains (Paper-2) English practice: topic drills, timed mock tests and a vocabulary builder. Works offline.",
+  "description": "SSC CPO Mains (Paper-2) English practice: topic drills, timed mock tests and a vocabulary builder..",
   "id": "./index.html",
   "start_url": "./index.html",
   "scope": "./",

@@ -1,6 +1,6 @@
 # CPO English Drill
 
-A free, single-file practice trainer for the **SSC CPO Mains (Paper-2) English** exam — topic-wise drills, a balanced full-paper mock, and a vocabulary builder, all matched to the actual SSC CPO pattern. **It works completely offline**: no account, no server, no API key, no internet connection needed.
+A free, single-file practice trainer for the **SSC CPO Mains (Paper-2) English** exam — topic-wise drills, a balanced full-paper mock, and a vocabulary builder, all matched to the actual SSC CPO pattern. No account, no sign-up and no API key needed.
 
 **Made with ❤️ by Div**
 
@@ -26,19 +26,18 @@ Open `index.html` in any modern browser. That's it — there is nothing to insta
 - **Progress is saved as you answer** — leaving a drill midway doesn't lose your progress. Everything is stored locally in your browser (`localStorage`).
 - **Keyboard shortcuts** — `1`–`4` or `A`–`D` to answer, `Enter` for the next question. In a timed test: `N` next, `P` previous, `M` mark for review.
 
-## Install as an app (PWA)
+## Add to home screen
 
-When the app is served over **https** (GitHub Pages, Netlify, Cloudflare Pages, ...), it can be installed like a normal app and then works with **no internet**:
+The app can be added to a phone's home screen so it opens like a normal app (it needs an internet connection to load; there is no offline cache):
 
-- **Android / Chrome:** tap the **📲 Install** button in the header (or the browser menu → *Install app*).
+- **Android / Chrome:** tap the **📲 Install** button in the header (or the browser menu → *Add to Home screen*).
 - **iPhone / iPad (Safari):** tap **Share → Add to Home Screen** (the 📲 Install button shows these steps).
-- **Desktop Chrome / Edge:** use the install icon in the address bar.
 
-How it works: `manifest.webmanifest` describes the app, `sw.js` (a service worker) caches the page and serves it instantly, even offline, while quietly refreshing it in the background, and `icons/` holds the app icons. Opening `index.html` straight from a folder still works exactly as before (without install). When you ship a new version, simply upload the new files — returning users get it on their next open. Change `CACHE_VERSION` in `sw.js` only if you want old caches cleared.
+`manifest.webmanifest` and `icons/` provide the name and icons. `sw.js` is a retired service worker: it only exists so that devices which installed an older, offline-cached version clean themselves up. The app always loads the latest version from the network.
 
 ## Tech
 
-Plain HTML, CSS and vanilla JavaScript — the whole app is the single `index.html`, plus a small manifest, service worker and icons for installing it. No frameworks, no build tools, no external requests (system fonts only).
+Plain HTML, CSS and vanilla JavaScript — the whole app is the single `index.html`, plus a small manifest and icons for adding it to the home screen. No frameworks, no build tools, no external libraries (system fonts only).
 
 Question data lives in the `<script>` section of `index.html`:
 
